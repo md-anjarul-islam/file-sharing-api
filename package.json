@@ -5,7 +5,8 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "mocha"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
@@ -16,5 +17,9 @@
     "node-cron": "^3.0.3",
     "swagger-ui-express": "^5.0.1",
     "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "expect": "^29.7.0",
+    "mocha": "^10.7.3"
   }
 }
