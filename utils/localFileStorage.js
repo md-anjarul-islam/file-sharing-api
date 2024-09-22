@@ -1,7 +1,7 @@
-import fs, { createWriteStream, existsSync, mkdirSync } from "fs";
+import fs, { createWriteStream, existsSync } from "fs";
 import path from "path";
-import { BaseFileStorage } from "./baseStorage.js";
 import { mkdir, stat } from "fs/promises";
+import { BaseFileStorage } from "./baseStorage.js";
 import { fileConfig } from "../config/index.js";
 
 /** Local file system to manage files */
@@ -24,8 +24,15 @@ export class LocalFileStorage extends BaseFileStorage {
         }
         const filePath = path.join(this.config.rootFolder, publicKey);
         const writeStream = createWriteStream(filePath);
-        writeStream.write(fileBuffer);
-        return resolve(true);
+        writeStream.write(fileBuffer, (err) => {
+          console.error(err);
+
+          if (!err) {
+            return resolve(true);
+          }
+
+          throw new Error(err);
+        });
       } catch (error) {
         console.error("Error uploading file to storage", error);
         reject(error);
