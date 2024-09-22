@@ -1,0 +1,83 @@
+openapi: 3.0.0
+info:
+  title: File Sharing API
+  description: API for uploading, downloading, and deleting files securely.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+    description: Local development server
+paths:
+  /files:
+    post:
+      summary: Upload a new file
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Successfully uploaded file
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  publicKey:
+                    type: string
+                    description: The public key of the uploaded file
+                  privateKey:
+                    type: string
+                    description: The private key to delete the uploaded file
+        "400":
+          description: No file uploaded
+  /files/{publicKey}:
+    get:
+      summary: Download a file
+      parameters:
+        - name: publicKey
+          in: path
+          required: true
+          description: The public key of the file to download
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successfully downloaded file
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        "404":
+          description: File not found
+  /files/{privateKey}:
+    delete:
+      summary: Delete a file
+      parameters:
+        - name: privateKey
+          in: path
+          required: true
+          description: The private key to delete the file
+          schema:
+            type: string
+      responses:
+        "200":
+          description: File deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: File deleted successfully
+        "400":
+          description: Invalid private key
+        "404":
+          description: File not found
