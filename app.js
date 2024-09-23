@@ -30,3 +30,5 @@ startCleanupJob();
 app.listen(serverConfig.port, () => {
   console.log(`Server is running on port ${serverConfig.port}`);
 });
+
+export default app;
