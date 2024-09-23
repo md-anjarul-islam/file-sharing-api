@@ -6,9 +6,9 @@
   "type": "module",
   "scripts": {
     "start": "node app.js",
-    "test": "npm run test:unit && npm run test:integration",
-    "test:unit": "mocha --recursive ./test/unit/**/*.test.js --exit",
-    "test:integration": "mocha --recursive ./test/integration/**/*.test.js --exit"
+    "test": "yarn run test:unit && yarn run test:integration",
+    "test:unit": "mocha --recursive ./tests/unit/**/*.test.js --exit",
+    "test:integration": "mocha --recursive ./tests/integration/**/*.test.js --exit"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
