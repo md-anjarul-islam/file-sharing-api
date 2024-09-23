@@ -40,6 +40,14 @@ export class LocalFileStorage extends BaseFileStorage {
     });
   }
 
+  async fileSize(filePath) {
+    if (!existsSync(filePath)) {
+      throw new Error("File not exist");
+    }
+
+    return (await stat(filePath)).size;
+  }
+
   // Download implementation
   async download(fileKey) {
     const filePath = path.join(this.config.rootFolder, fileKey);

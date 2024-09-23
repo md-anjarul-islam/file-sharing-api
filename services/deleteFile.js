@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import { StorageFactory } from "../utils/storageFactory.js";
+import { fileConfig } from "../config/index.js";
 const fileStorage = StorageFactory.createStorage();
 
 export async function deleteFile(req, res) {
@@ -15,7 +16,6 @@ export async function deleteFile(req, res) {
     await fileStorage.delete(publicKey);
     res.json({ message: "File deleted successfully" });
   } catch (err) {
-    console.error(err);
     res.status(400).json({ message: "File not found or Invalid private key" });
   }
 }

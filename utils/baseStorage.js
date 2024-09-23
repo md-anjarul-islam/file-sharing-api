@@ -5,6 +5,10 @@ export class BaseFileStorage {
     throw new Error("Method not implemented.");
   }
 
+  async fileSize(filePath) {
+    throw new Error("Method not implemented");
+  }
+
   // Download file interface
   async download(fileKey) {
     throw new Error("Method not implemented.");
