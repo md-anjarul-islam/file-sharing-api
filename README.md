@@ -14,7 +14,7 @@ This is a **File Sharing API Server** built with Node.js and Express that allows
 ## Prerequisites
 
 - **Node.js** (v20+)
-- **yarn** (v1.22+)
+- **npm** (v10+)
 
 ## Getting Started
 
@@ -28,7 +28,7 @@ cd file-sharing-api
 ### 2. Install dependencies
 
 ```bash
-yarn install
+npm install
 ```
 
 ### 3. Environment setup
@@ -44,7 +44,7 @@ Adjust the environment variables if needed.
 ### 4. Run the server
 
 ```bash
-yarn start
+npm start
 ```
 
 This will start the server on the port specified in your `.env` file (default is `3000`).
@@ -62,7 +62,7 @@ http://localhost:3000/api-docs
 To run the unit and integration tests:
 
 ```bash
-yarn test
+npm test
 ```
 
 ## Storage Providers

@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node app.js",
-    "test": "yarn run test:unit && yarn run test:integration",
+    "test": "npm run test:unit && npm run test:integration",
     "test:unit": "mocha --recursive ./tests/unit/**/*.test.js --exit",
     "test:integration": "mocha --recursive ./tests/integration/**/*.test.js --exit"
   },
