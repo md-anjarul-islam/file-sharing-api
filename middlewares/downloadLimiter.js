@@ -15,6 +15,7 @@ export async function downloadLimiter(req, res, next) {
     const publicKey = req.params.publicKey;
     const filePath = path.join(storageConfig.config.rootFolder, publicKey);
 
+    // Get the requested file size to check the limit
     const fileSize = (await storage.fileSize(filePath)) / ONE_MB_IN_BYTE;
     const userIP = req.ip;
     const today = new Date();

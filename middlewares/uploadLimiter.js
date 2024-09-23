@@ -21,6 +21,7 @@ export function uploadLimiter(req, res, next) {
     uploadStats[userIP] = { lastUploadedDate: today, totalUploaded: 0 };
   }
 
+  // Check the uploading file size to check the limit
   const newFileSize =
     parseInt(req.headers["content-length"], 10) / ONE_MB_IN_BYTE;
 
