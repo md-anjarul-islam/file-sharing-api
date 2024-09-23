@@ -10,12 +10,12 @@ const downloadStats = {}; //Stores the download stats for each ip adddress
 const ONE_MB_IN_BYTE = 1024 * 1024;
 const storage = StorageFactory.createStorage();
 
-export function downloadLimiter(req, res, next) {
+export async function downloadLimiter(req, res, next) {
   try {
     const publicKey = req.params.publicKey;
     const filePath = path.join(storageConfig.config.rootFolder, publicKey);
 
-    const fileSize = storage.fileSize(filePath) / ONE_MB_IN_BYTE;
+    const fileSize = (await storage.fileSize(filePath)) / ONE_MB_IN_BYTE;
     const userIP = req.ip;
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -45,7 +45,6 @@ export function downloadLimiter(req, res, next) {
 
     next();
   } catch (err) {
-    console.error(err);
-    return res.status(400).json({ message: "File not found" });
+    res.status(400).json({ message: "File not found" });
   }
 }

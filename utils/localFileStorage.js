@@ -25,8 +25,6 @@ export class LocalFileStorage extends BaseFileStorage {
         const filePath = path.join(this.config.rootFolder, publicKey);
         const writeStream = createWriteStream(filePath);
         writeStream.write(fileBuffer, (err) => {
-          console.error(err);
-
           if (!err) {
             return resolve(true);
           }
